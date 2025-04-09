@@ -1,0 +1,259 @@
+@import 'animations';
+
+// ======== Base Variables ========
+$table-border-light: #ddd;
+$table-border-dark: #444;
+$coin-icon-size: 24px;
+$coin-icon-spacing: 0.8rem;
+
+// ======== Main Container ========
+.table-container {
+  position: relative;
+  padding: 20px;
+  font-family: 'Outfit', sans-serif;
+  .main-header{
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 42px;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+  }
+  // ======== Header Section ========
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 1.5rem;
+
+    .controls-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  // ======== Date Picker ========
+  .custom-date-picker {
+    width: 200px;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: inherit;
+    
+    &.react-datepicker__input-container input {
+      cursor: pointer;
+    }
+  }
+
+  // ======== Search Input ========
+  .search-input {
+    flex: 1;
+    max-width: 300px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+  }
+
+  // ======== Crypto Table ========
+  .crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid $table-border-light;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      .sort-indicator {
+        margin-left: 0.5rem;
+        opacity: 0.7;
+      }
+    }
+
+    // ======== Coin Cell ========
+    .coin-cell {
+      display: flex;
+      align-items: center;
+      min-width: 150px;
+
+      .crypto-icon {
+        width: $coin-icon-size;
+        height: $coin-icon-size;
+        margin-right: $coin-icon-spacing;
+        vertical-align: middle;
+        transition: transform 0.2s ease;
+      }
+
+      .coin-name {
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    // ======== Value Containers ========
+    .value-container {
+      position: relative;
+      min-width: 100px;
+
+      .animated-value {
+        position: relative;
+        height: 24px;
+        overflow: hidden;
+      }
+
+      .old-value {
+        position: absolute;
+        color: #666;
+        opacity: 0.7;
+      }
+
+      .new-value {
+        position: relative;
+        z-index: 1;
+      }
+    }
+  }
+
+  // ======== Fluctuation Styles ========
+  .fluctuation-positive {
+    color: #28a745;
+  }
+
+  .fluctuation-negative {
+    color: #dc3545;
+  }
+
+  // ======== Spinner ========
+  .spinner-container {
+    text-align: center;
+    margin-top: 20px;
+    padding: 2rem;
+  }
+  .showButtonContainer {
+    margin-top: 20px;
+    display: flex; // Use flexbox
+    justify-content: center; // Center horizontally
+    align-items: center; // Center vertically
+}
+  .show-more-button {
+    background-color: #cfcece; // Primary color
+    color: black; // Text color
+    border: none; // No border
+    border-radius: 5px; // Rounded corners
+    padding: 10px 20px; // Padding for spacing
+    font-size: 16px; // Font size
+    cursor: pointer; // Pointer cursor on hover
+    transition: background-color 0.3s ease; // Transition for smooth hover effect
+
+    // Hover state
+    &:hover {
+        background-color: #0056b3; // Darker shade on hover
+    }
+
+    // Disabled state
+    &:disabled {
+        background-color: #6c757d; // Grey color when disabled
+        cursor: not-allowed; // Not-allowed cursor
+        opacity: 0.65; // Slightly transparent
+    }
+
+    // Focus state
+    &:focus {
+        outline: none; // Remove default outline
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); // Custom focus outline
+    }
+
+    // Active state
+    &:active {
+        background-color: #004085; // Even darker shade when active
+    }
+}
+
+}
+
+// ======== Dark Theme Overrides ========
+[data-theme="dark"] {
+  .table-container {
+    .crypto-table {
+      th, td {
+        border-color: $table-border-dark;
+      }
+
+      th {
+        background-color: #2a2a2a;
+      }
+
+      .crypto-icon {
+        filter: brightness(0.85);
+      }
+    }
+
+    .search-input {
+      background-color: #333;
+      border-color: #555;
+      color: white;
+    }
+
+    .custom-date-picker {
+      background-color: #333;
+      border-color: #555;
+      color: white;
+    }
+  }
+}
+
+// ======== Date Picker Overrides ========
+.react-datepicker {
+  font-family: 'Outfit', sans-serif;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+  &__header {
+    background-color: #f8f9fa;
+    border-bottom: none;
+  }
+
+  &__navigation {
+    top: 10px;
+    
+    &--previous {
+      border-right-color: #6c757d;
+    }
+    
+    &--next {
+      border-left-color: #6c757d;
+    }
+  }
+
+  &__day {
+    &--selected {
+      background-color: #007bff;
+      border-radius: 50%;
+    }
+    
+    &--today {
+      font-weight: bold;
+      color: #dc3545;
+    }
+  }
+}

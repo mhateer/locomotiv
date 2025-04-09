@@ -1,0 +1,44 @@
+.value-container {
+    position: relative;
+    overflow: hidden;
+    min-width: 80px;
+    
+    .animated-value {
+      position: relative;
+      height: 100%;
+      transform: translateZ(0); // GPU acceleration
+    }
+    
+    .old-value.slide-down {
+      animation: slideDownOut 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #FFFFFF;
+      opacity: 0.7;
+    }
+    
+    .new-value {
+      animation: fadeInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }  
+  
+  @keyframes slideDownOut {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(-20%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
